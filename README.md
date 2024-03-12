@@ -18,6 +18,7 @@ Our Learning Management System (LMS) allows students to enroll in various course
 - React
 - Chakra UI
 - Javascript
+- React Router Dom
 - html & css
 
 2. Backend:
