@@ -12,7 +12,7 @@ import {
 import Login from "../component/Login";
 import Signup from "../component/Signup";
 
-export const backendUrl = 'http://localhost:4500'
+export const backendUrl = 'https://idea-clan-backend-rqz8.onrender.com'
 const Home = () => {
  
   return (

@@ -21,7 +21,7 @@ const allcourses = async()=>{
   try{
     const {data}  =  await axios.get(`${backendUrl}/admin/allcourses`, config)
     setAllcourses(data?.courses)
-    console.log(data?.courses)
+   // console.log(data?.courses)
   }catch(error){
   console.log(error)
   }

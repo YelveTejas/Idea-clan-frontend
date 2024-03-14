@@ -1,76 +1,37 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
-import React from 'react'
+import { Box, Flex, Text, useToast } from '@chakra-ui/react';
+import React, { useState } from 'react'
 import { GrAnnounce } from "react-icons/gr";
+import { backendUrl } from '../../Pages/Home';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const Lectures = () => {
-  const courseContent = [
-    {
-      title: 'Introduction to Programming',
-      lecturer: 'John Doe',
-      date: '2024-03-12',
-      date: '3/03/2023',
-    },
-    {
-      title: 'Web Development Basics',
-      lecturer: 'Jane Smith',
-      date: '2024-03-20',
-      date: '3/03/2023',
-    },
-    {
-      title: 'Data Structures and Algorithms',
-      lecturer: 'Robert Johnson',
-      date: '2024-04-05',
-      date: '3/03/2023',
-    },
-    {
-      title: 'Machine Learning Fundamentals',
-      lecturer: 'Emily White',
-      date: '2024-04-15',
-      date: '3/03/2023',
-    },
-    {
-      title: 'Mobile App Development',
-      lecturer: 'Chris Brown',
-      date: '2024-05-01',
-      date: '3/03/2023',
-    },
-    {
-      title: 'Network Security',
-      lecturer: 'Alex Turner',
-      date: '2024-05-10',
-      date: '3/03/2023',
-    },
-    {
-      title: 'Database Design and Management',
-      lecturer: 'Samantha Green',
-      date: '2024-05-25',
-      date: '3/03/2023',
-    },
-    {
-      title: 'Digital Marketing Strategies',
-      lecturer: 'Daniel Miller',
-      date: '2024-06-05',
-      date: '3/03/2023',
-    },
-    {
-      title: 'Graphic Design Principles',
-      lecturer: 'Olivia Martinez',
-      date: '2024-06-15',
-      date: '3/03/2023',
-    },
-    {
-      title: 'Artificial Intelligence Applications',
-      lecturer: 'Michael Turner',
-      date: '2024-06-28',
-      
-    },
-    // Add more courses as needed
-  ];
+  const [lecturedata,setLecturedata] = useState([])
+ const toast = useToast()
+  const AllLectures=async()=>{
+    try{
+      const {data} = await  axios.get(`${backendUrl}/admin/lectures`)
+    //  console.log(data)
+      setLecturedata(data)
+    }catch(error){
+     // console.log(error)
+     toast({
+      title: "Error While Fetching",
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+      position: "top-right",
+     })
+    }
   
+  }
+  useEffect(()=>{
+    AllLectures()
+  },[])
   return (
-    <Box bgColor={'#E2E8F0'} p='20px'>
+    <Box bgColor={'#E2E8F0'} p='20px' h='630px'>
     {
-      courseContent.map((e,i)=>(
+      lecturedata && lecturedata.map((e,i)=>(
         <Flex key={i+1} py='10px' justifyContent={'space-between'} alignItems={'center'}>
           <Flex gap='10px' w='350px' alignItems={'center'}> 
           <GrAnnounce/>

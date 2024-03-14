@@ -1,22 +1,22 @@
-import { Route, Routes } from 'react-router-dom';
-import logo from './logo.svg';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
 
-import Home from './Pages/Home';
+import PrivateRoute from "./component/PrivateRoute";
+import Dashboard from "./Pages/Dashboard";
+import Courses from "./Pages/Courses";
+import Home from "./Pages/Home";
 
-import Courses from './Pages/Courses';
-import Dashboard from './Pages/Dashboard';
-
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <>
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/dashboard' element={<Dashboard/>}></Route>
-        <Route path='/course' element={<Courses/>}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path="/course" element={<PrivateRoute><Courses /></PrivateRoute>} />
       </Routes>
-    
-    </div>
+    </>
   );
-}
+};
 
 export default App;
